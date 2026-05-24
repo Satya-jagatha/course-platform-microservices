@@ -56,8 +56,9 @@ public class UserController
 	public Users update(@Valid @RequestBody Users u,@PathVariable Long id)
 	{
 		
-		usService.update(id,u);
-		return u;
+		
+		return usService.update(id,u);
+		
 	}
 	
 	@DeleteMapping("/{id}")

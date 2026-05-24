@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.RoleRepository;
 import com.example.demo.entity.Roles;
+import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class RoleServiceImpl implements RoleService
@@ -28,7 +29,8 @@ public class RoleServiceImpl implements RoleService
 	
 	public Roles findById(Long id) {
 		// TODO Auto-generated method stub
-		return roleRepo.findById(id).orElseThrow();
+		return roleRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("role details was not found with the id :"+id));
 	}
 
 	
