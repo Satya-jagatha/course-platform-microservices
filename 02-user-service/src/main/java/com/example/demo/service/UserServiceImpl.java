@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserRepository;
+import com.example.demo.entity.Roles;
 import com.example.demo.entity.Users;
 import com.example.demo.exception.DuplicateResourceException;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -67,6 +68,9 @@ public class UserServiceImpl implements UserService
 	
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
+		Users user = userRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("role details was not found with the id :"+id));
+	
 		userRepo.deleteById(id);
 		
 	}

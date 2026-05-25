@@ -43,6 +43,10 @@ public class RoleServiceImpl implements RoleService
 	
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
+		Roles role = roleRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("role details was not found with the id :"+id));
+	
+		
 		roleRepo.deleteById(id);
 		
 	}
