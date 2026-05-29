@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ModuleRepository;
 import com.example.demo.entity.CourseModules;
+import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class ModuleServiceImpl implements ModuleService
@@ -26,7 +27,8 @@ public class ModuleServiceImpl implements ModuleService
 	
 	public CourseModules findById(Long id) {
 		// TODO Auto-generated method stub
-		return moduleRepo.findById(id).orElseThrow();
+		return moduleRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Module not found with the id :"+id));
 	}
 
 	
@@ -39,7 +41,8 @@ public class ModuleServiceImpl implements ModuleService
 	
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		CourseModules module = moduleRepo.findById(id).orElseThrow();
+		CourseModules module = moduleRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Module not found with the id :"+id));
 		
 		moduleRepo.deleteById(id);
 		

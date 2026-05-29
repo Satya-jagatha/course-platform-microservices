@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CourseRepository;
 import com.example.demo.entity.Courses;
+import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class CourseServiceImpl implements CourseService
@@ -26,13 +27,15 @@ public class CourseServiceImpl implements CourseService
 	
 	public Courses findById(Long id) {
 		// TODO Auto-generated method stub
-		return courseRepo.findById(id).orElseThrow();
+		return courseRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Course not found with the id : "+id));
 	}
 
 	
 	public Courses findByTitle(String title) {
 		// TODO Auto-generated method stub
-		return courseRepo.findByTitle(title).orElseThrow();
+		return courseRepo.findByTitle(title)
+				.orElseThrow(() -> new ResourceNotFoundException("Course not found with the title : "+title));
 	}
 
 	
@@ -46,7 +49,8 @@ public class CourseServiceImpl implements CourseService
 	
 	public Courses update(Long id, Courses course) {
 		// TODO Auto-generated method stub
-		Courses existCourse = courseRepo.findById(id).orElseThrow();
+		Courses existCourse = courseRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Course not found with the id : "+id));
 		existCourse.setTitle(course.getTitle());
 		existCourse.setCategory(course.getCategory());
 		existCourse.setDescription(course.getDescription());
@@ -54,16 +58,15 @@ public class CourseServiceImpl implements CourseService
 		existCourse.setLevel(course.getLevel());
 		existCourse.setModules(course.getModules());
 		existCourse.setActive(course.isActive());
-		existCourse.setId(existCourse.getId());
-		existCourse.setCreatedAt(existCourse.getCreatedAt());
 		
-		return existCourse;
+		return courseRepo.save(existCourse);
 	}
 
 	
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		Courses course = courseRepo.findById(id).orElseThrow();
+		Courses course = courseRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Course not found with the id : "+id));
 		
 		courseRepo.deleteById(id);
 		
