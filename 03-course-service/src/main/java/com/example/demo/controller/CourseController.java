@@ -44,6 +44,30 @@ public class CourseController
 		return courseService.findByTitle(title);
 	}
 	
+	@GetMapping("/level/{level}")
+	public List<Courses> findByLevel(@PathVariable String level)
+	{
+		return courseService.findByLevel(level);
+	}
+	
+	@GetMapping("/active/{active}")
+	public List<Courses> findByActive(@PathVariable Boolean active)
+	{
+		return courseService.findByActive(active);
+	}
+	
+	@GetMapping("category/{categoryId}")
+	public List<Courses> findByCategoryId(@PathVariable Long categoryId)
+	{
+		return courseService.findByCategoryId(categoryId);
+	}
+	
+	@GetMapping("/category/name/{name}")
+	public List<Courses> findByCategoryName(@PathVariable String name)
+	{
+		return courseService.findByCategoryName(name);
+	}
+	
 	@PostMapping
 	public Courses save(@Valid @RequestBody Courses course)
 	{

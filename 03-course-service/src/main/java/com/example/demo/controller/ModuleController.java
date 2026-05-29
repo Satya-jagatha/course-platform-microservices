@@ -39,6 +39,12 @@ public class ModuleController
 		return moduleService.findById(id);
 	}
 	
+	@GetMapping("/course/{courseId}")
+	public List<CourseModules> findByCourseId(@PathVariable Long courseId)
+	{
+		return moduleService.findByCourseId(courseId);
+	}
+	
 	@PostMapping
 	public CourseModules save(@Valid @RequestBody CourseModules module)
 	{

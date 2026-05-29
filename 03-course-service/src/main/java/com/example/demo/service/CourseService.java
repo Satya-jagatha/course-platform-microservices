@@ -12,5 +12,9 @@ public interface CourseService
 	public void save(Courses course);
 	public Courses update(Long id, Courses course);
 	public void deleteById(Long id);
+	public List<Courses> findByLevel(String level);
+	public List<Courses> findByActive(Boolean active);
+	public List<Courses> findByCategoryId(Long categoryId);
+	public List<Courses> findByCategoryName(String name);
 
 }

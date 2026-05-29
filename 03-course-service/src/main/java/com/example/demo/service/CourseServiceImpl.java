@@ -70,4 +70,32 @@ public class CourseServiceImpl implements CourseService
 		
 	}
 
+
+
+	public List<Courses> findByLevel(String level) {
+		// TODO Auto-generated method stub
+		return courseRepo.findByLevel(level);
+	}
+
+
+	
+	public List<Courses> findByActive(Boolean active) {
+		// TODO Auto-generated method stub
+		return courseRepo.findByActive(active);
+	}
+
+
+	
+	public List<Courses> findByCategoryId(Long categoryId) {
+		// TODO Auto-generated method stub
+		return courseRepo.findByCategoryId(categoryId);
+	}
+
+
+	
+	public List<Courses> findByCategoryName(String name) {
+		// TODO Auto-generated method stub
+		return courseRepo.findByCategory_Name(name);
+	}
+
 }

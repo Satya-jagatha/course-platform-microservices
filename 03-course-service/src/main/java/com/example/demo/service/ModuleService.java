@@ -10,5 +10,6 @@ public interface ModuleService
 	public CourseModules findById(Long id);
 	public void saveOrUpdate(CourseModules module);
 	public void deleteById(Long id);
+	public List<CourseModules> findByCourseId(Long courseId);
 
 }

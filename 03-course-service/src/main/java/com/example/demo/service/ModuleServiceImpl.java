@@ -45,4 +45,11 @@ public class ModuleServiceImpl implements ModuleService
 		
 	}
 
+
+	
+	public List<CourseModules> findByCourseId(Long courseId) {
+		// TODO Auto-generated method stub
+		return moduleRepo.findByCourse_Id(courseId);
+	}
+
 }
