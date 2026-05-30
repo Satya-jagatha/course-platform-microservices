@@ -62,8 +62,8 @@ public class CategoryServiceImpl implements CategoryService
 				.orElseThrow(() -> new ResourceNotFoundException("category not found with the id :"+id));
 		existCategory.setCategory(category.getCategory());
 		existCategory.setName(category.getName());
-		existCategory.setId(existCategory.getId());
-		return existCategory;
+		
+		return categoryRepo.save(existCategory);
 	}
 
 	
